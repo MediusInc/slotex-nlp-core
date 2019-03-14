@@ -1,0 +1,187 @@
+= MediusNLP API Documentation
+:author: Mitja J. Kotnik
+:email: mitja.kotnik@medius.si
+:revnumber: 1.0-SNAPSHOT
+:revdate: 29.10.2018
+:revremark: Initial version
+:toc: left
+:sectnums:
+:source-highlighter: highlight.js
+
+== Introduction
+This is a Spring REST Docs documentation four our MediusNLP RESTfull API.
+
+== Admin API
+Collection of CRUD API endpoints used to manipulate and show administration data about out MediusNLP platform.
+
+=== GET status
+Obtains a status message from servcer which tells us basic information about the processes that are running on our platform. It provides
+data about how many documents are already processed, in processing and waiting to be processed.
+
+==== Sample Request
+include::{snippets}/AdminControllerTest/shouldReturnStatusMessage/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/AdminControllerTest/shouldReturnStatusMessage/http-response.adoc[]
+
+===== Response fields
+include::{snippets}/AdminControllerTest/shouldReturnStatusMessage/response-fields.adoc[]
+
+==== CURL sample
+include::{snippets}/AdminControllerTest/shouldReturnStatusMessage/curl-request.adoc[]
+
+=== POST document to queue
+Pushes a document to the waiting to be processed queue.
+
+==== Sample Request
+include::{snippets}/AdminControllerTest/shouldPushDocumentToQueue/http-request.adoc[]
+
+===== Request fields
+include::{snippets}/AdminControllerTest/shouldPushDocumentToQueue/request-fields.adoc[]
+
+==== Sample Response
+include::{snippets}/AdminControllerTest/shouldPushDocumentToQueue/http-response.adoc[]
+
+==== CURL sample
+include::{snippets}/AdminControllerTest/shouldPushDocumentToQueue/curl-request.adoc[]
+
+=== GET process from queue
+Processes the desired number of documents from the wait queue.
+
+==== Sample Request
+include::{snippets}/AdminControllerTest/shouldProcessDocumentInQueue/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/AdminControllerTest/shouldProcessDocumentInQueue/http-response.adoc[]
+
+===== Response fields
+include::{snippets}/AdminControllerTest/shouldProcessDocumentInQueue/response-fields.adoc[]
+
+==== CURL sample
+include::{snippets}/AdminControllerTest/shouldProcessDocumentInQueue/curl-request.adoc[]
+
+=== GET return documents to process
+Returns all the documents from the work queue back to wait queue. There they can be processed again.
+
+==== Sample Request
+include::{snippets}/AdminControllerTest/shouldReturnDocumentToWaitQueue/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/AdminControllerTest/shouldReturnDocumentToWaitQueue/http-response.adoc[]
+
+==== CURL sample
+include::{snippets}/AdminControllerTest/shouldReturnDocumentToWaitQueue/curl-request.adoc[]
+
+== Tag API
+Collection of CRUD API endpoints used to tag our documents.
+
+=== POST tag
+Send a document to the service for tagging. Define which NLP steps you want to execute on the document.
+
+==== Sample Request
+include::{snippets}/TagControllerTest/shouldTagProvidedDocument/http-request.adoc[]
+
+===== Request fields
+include::{snippets}/TagControllerTest/shouldTagProvidedDocument/request-fields.adoc[]
+
+==== Sample Response
+include::{snippets}/TagControllerTest/shouldTagProvidedDocument/http-response.adoc[]
+
+===== Response fields
+include::{snippets}/TagControllerTest/shouldTagProvidedDocument/response-fields.adoc[]
+
+==== CURL sample
+include::{snippets}/TagControllerTest/shouldTagProvidedDocument/curl-request.adoc[]
+
+=== GET tagged by ID
+Obtain all the data about the already tagged document based on the ID.
+
+==== Sample Request
+include::{snippets}/TagControllerTest/shouldGetTaggedById/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/TagControllerTest/shouldGetTaggedById/http-response.adoc[]
+
+===== Response fields
+include::{snippets}/TagControllerTest/shouldGetTaggedById/response-fields.adoc[]
+
+==== CURL sample
+include::{snippets}/TagControllerTest/shouldGetTaggedById/curl-request.adoc[]
+
+=== GET all tagged documents
+Obtain all the data about all the tagged documents.
+
+==== Sample Request
+include::{snippets}/TagControllerTest/shouldGetTaggedDocs/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/TagControllerTest/shouldGetTaggedDocs/http-response.adoc[]
+
+===== Response fields
+include::{snippets}/TagControllerTest/shouldGetTaggedDocs/response-fields.adoc[]
+
+==== CURL sample
+include::{snippets}/TagControllerTest/shouldGetTaggedDocs/curl-request.adoc[]
+
+=== GET all tagged entities
+Obtain all the data about entities that were found in processed documents.
+
+==== Sample Request
+include::{snippets}/TagControllerTest/shouldGetTaggedEntities/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/TagControllerTest/shouldGetTaggedEntities/http-response.adoc[]
+
+===== Response fields
+include::{snippets}/TagControllerTest/shouldGetTaggedEntities/response-fields.adoc[]
+
+==== CURL sample
+include::{snippets}/TagControllerTest/shouldGetTaggedEntities/curl-request.adoc[]
+
+== Train API
+Collection of CRUD API endpoints used to train new models for NLP and show basic data about our previus training cycles.
+
+=== POST train
+Send tagged sentences to re-train the specific model with the new data.
+
+==== Sample Request
+include::{snippets}/TrainControllerTest/shouldTrainModelWithAdditinalData/http-request.adoc[]
+
+===== Request fields
+include::{snippets}/TrainControllerTest/shouldTrainModelWithAdditinalData/request-fields.adoc[]
+
+==== Sample Response
+include::{snippets}/TrainControllerTest/shouldTrainModelWithAdditinalData/http-response.adoc[]
+
+===== Response fields
+include::{snippets}/TrainControllerTest/shouldTrainModelWithAdditinalData/response-fields.adoc[]
+
+==== CURL sample
+include::{snippets}/TrainControllerTest/shouldTrainModelWithAdditinalData/curl-request.adoc[]
+
+=== GET models
+Obtains the basic information about all the already trained and available models.
+
+==== Sample Request
+include::{snippets}/TrainControllerTest/shouldGetTrainingModels/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/TrainControllerTest/shouldGetTrainingModels/http-response.adoc[]
+
+===== Response fields
+include::{snippets}/TrainControllerTest/shouldGetTrainingModels/response-fields.adoc[]
+
+==== CURL sample
+include::{snippets}/TrainControllerTest/shouldGetTrainingModels/curl-request.adoc[]
+
+=== GET retrain model
+Retrains the model with new corrected data.
+
+==== Sample Request
+include::{snippets}/TrainControllerTest/shouldGetRetrained/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/TrainControllerTest/shouldGetRetrained/http-response.adoc[]
+
+==== CURL sample
+include::{snippets}/TrainControllerTest/shouldGetRetrained/curl-request.adoc[]
