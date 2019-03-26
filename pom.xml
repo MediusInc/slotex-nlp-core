@@ -8,7 +8,7 @@
     <artifactId>slotex-nlp-core</artifactId>
     <url>https://github.com/MediusInc/slotex-nlp-core</url>
     <name>SloTex - Medius d.o.o.</name>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
          
     <licenses>
       <license>
@@ -16,12 +16,38 @@
         <url>http://www.gnu.org/licenses/gpl.txt</url>
       </license>
     </licenses>
-         
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.2.RELEASE</version>
     </parent>
+
+    <name>SloTex NLP Core</name>
+    <description>A web application which exposes REST endpoints for natural language processing.</description>
+    <url>http://www.slotex.si</url>
+
+    <!-- TODO @peter-cebasek add license here -->
+
+    <developers>
+        <developer>
+            <name>Tadej Justin</name>
+            <email>tadej.justin@medius.si</email>
+            <organization>Medius d.o.o.</organization>
+            <organizationUrl>http://www.medius.si</organizationUrl>
+        </developer>
+        <developer>
+            <name>Mitja J. Kotnik</name>
+            <email>mitja.kotnik@medius.si</email>
+            <organization>Medius d.o.o.</organization>
+            <organizationUrl>http://www.medius.si</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/MediusInc/slotex-nlp-core.git</connection>
+        <developerConnection>scm:git:ssh://github.com:MediusInc/slotex-nlp-core.git</developerConnection>
+        <url>https://github.com/MediusInc/slotex-nlp-core/tree/master</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,6 +60,17 @@
         <version.asciidoctor>1.5.7</version.asciidoctor>
         <version.apache-commons>2.6</version.apache-commons>
     </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <!-- dependencies for SloTex libraries -->
@@ -89,7 +126,7 @@
             <version>${version.stanford-corenlp}</version>
         </dependency>
 
-        <!-- dependencies for other stuff -->
+        <!-- dependencies for other libraries -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
@@ -101,8 +138,6 @@
             <artifactId>commons-io</artifactId>
             <version>${version.apache-commons}</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
