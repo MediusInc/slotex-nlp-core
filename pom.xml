@@ -43,6 +43,12 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:git://github.com/MediusInc/slotex-nlp-core.git</connection>
+        <developerConnection>scm:git:ssh://github.com:MediusInc/slotex-nlp-core.git</developerConnection>
+        <url>https://github.com/MediusInc/slotex-nlp-core/tree/master</url>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
