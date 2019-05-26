@@ -16,8 +16,8 @@ import opennlp.tools.lemmatizer.LemmatizerME;
 import opennlp.tools.lemmatizer.LemmatizerModel;
 import opennlp.tools.util.ObjectStream;
 import opennlp.tools.util.TrainingParameters;
-import si.medius.nlp.model.DocTag;
-import si.medius.nlp.model.Sentence;
+import si.slotex.nlp.entity.DocTag;
+import si.slotex.nlp.entity.Sentence;
 
 /**
  * Class for management all related to the lemmatization processing in the NLP.

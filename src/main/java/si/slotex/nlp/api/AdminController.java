@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import si.slotex.nlp.exception.BadRequestException;
-import si.medius.nlp.model.DocsProcessed;
-import si.medius.nlp.model.Document;
-import si.medius.nlp.model.QueueStatus;
-import si.medius.nlp.model.TaggedData;
+import si.slotex.nlp.entity.DocsProcessed;
+import si.slotex.nlp.entity.Document;
+import si.slotex.nlp.entity.QueueStatus;
+import si.slotex.nlp.entity.TaggedData;
 import si.slotex.nlp.service.DocumentService;
 import si.slotex.nlp.service.TagService;
 

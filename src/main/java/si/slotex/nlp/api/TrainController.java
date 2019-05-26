@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import si.medius.nlp.model.CorpusSentenceDiff;
-import si.medius.nlp.model.DocTrain;
-import si.medius.nlp.model.ModelTrainInfo;
+import si.slotex.nlp.entity.CorpusSentenceDiff;
+import si.slotex.nlp.entity.DocTrain;
+import si.slotex.nlp.entity.ModelTrainInfo;
 import si.slotex.nlp.service.TrainService;
 
 @RestController

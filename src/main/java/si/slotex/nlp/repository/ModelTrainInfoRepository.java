@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import si.medius.nlp.model.ModelTrainInfo;
+import si.slotex.nlp.entity.ModelTrainInfo;
 
 /**
  * Repository for saving data about new training data and new trained models

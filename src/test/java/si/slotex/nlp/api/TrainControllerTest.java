@@ -32,9 +32,9 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import si.medius.nlp.model.DocTrain;
-import si.medius.nlp.model.Sentence;
-import si.medius.nlp.model.Token;
+import si.slotex.nlp.entity.DocTrain;
+import si.slotex.nlp.entity.Sentence;
+import si.slotex.nlp.entity.Token;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

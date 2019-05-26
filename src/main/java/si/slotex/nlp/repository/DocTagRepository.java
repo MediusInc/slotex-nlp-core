@@ -2,7 +2,7 @@ package si.slotex.nlp.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import si.medius.nlp.model.DocTag;
+import si.slotex.nlp.entity.DocTag;
 
 /**
  * Repository for saving tagged documents to the MongoDB database.

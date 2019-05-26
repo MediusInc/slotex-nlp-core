@@ -15,9 +15,9 @@ import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 import opennlp.tools.util.ObjectStream;
 import opennlp.tools.util.TrainingParameters;
-import si.medius.nlp.model.DocTag;
-import si.medius.nlp.model.Sentence;
-import si.medius.nlp.model.Token;
+import si.slotex.nlp.entity.DocTag;
+import si.slotex.nlp.entity.Sentence;
+import si.slotex.nlp.entity.Token;
 import si.slotex.nlp.utils.Constants;
 import si.slotex.nlp.utils.NLPUtils;
 

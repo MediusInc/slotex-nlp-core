@@ -15,11 +15,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import si.slotex.nlp.exception.TrainLanguageNotSupportedException;
-import si.medius.nlp.model.CorpusSentenceDiff;
-import si.medius.nlp.model.DocTrain;
-import si.medius.nlp.model.ModelTrainInfo;
-import si.medius.nlp.model.Sentence;
-import si.medius.nlp.model.Token;
+import si.slotex.nlp.entity.CorpusSentenceDiff;
+import si.slotex.nlp.entity.DocTrain;
+import si.slotex.nlp.entity.ModelTrainInfo;
+import si.slotex.nlp.entity.Sentence;
+import si.slotex.nlp.entity.Token;
 import si.slotex.nlp.opennlp.NERTask;
 import si.slotex.nlp.opennlp.Task;
 import si.slotex.nlp.opennlp.TaskFactory;

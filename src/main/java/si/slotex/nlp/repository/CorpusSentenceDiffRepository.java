@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import si.medius.nlp.model.CorpusSentenceDiff;
+import si.slotex.nlp.entity.CorpusSentenceDiff;
 
 /**
  * Repository for saving corpus sentence differences when tagging with statistical and dictonary.

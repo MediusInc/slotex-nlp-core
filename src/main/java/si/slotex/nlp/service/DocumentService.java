@@ -14,8 +14,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import si.slotex.nlp.api.exceptions.NothingToProcessException;
-import si.medius.nlp.model.Document;
-import si.medius.nlp.model.QueueStatus;
+import si.slotex.nlp.entity.Document;
+import si.slotex.nlp.entity.QueueStatus;
 
 /**
  * Used for manipulation of documents between data queues in Redis. It can persist documents

@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import si.slotex.nlp.exception.ModelNotFoundException;
-import si.medius.nlp.model.DocTag;
-import si.medius.nlp.model.Document;
-import si.medius.nlp.model.Entity;
-import si.medius.nlp.model.Sentence;
-import si.medius.nlp.model.TaggedData;
-import si.medius.nlp.model.Token;
+import si.slotex.nlp.entity.DocTag;
+import si.slotex.nlp.entity.Document;
+import si.slotex.nlp.entity.Entity;
+import si.slotex.nlp.entity.Sentence;
+import si.slotex.nlp.entity.TaggedData;
+import si.slotex.nlp.entity.Token;
 import si.slotex.nlp.opennlp.LangTask;
 import si.slotex.nlp.opennlp.LemmaTask;
 import si.slotex.nlp.opennlp.NERTask;
