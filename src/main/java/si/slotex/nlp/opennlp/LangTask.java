@@ -18,8 +18,8 @@ import opennlp.tools.langdetect.LanguageDetectorModel;
 import opennlp.tools.langdetect.LanguageDetectorSampleStream;
 import opennlp.tools.util.ObjectStream;
 import opennlp.tools.util.TrainingParameters;
-import si.medius.nlp.model.DocTag;
-import si.medius.nlp.model.Document;
+import si.slotex.nlp.entity.DocTag;
+import si.slotex.nlp.entity.Document;
 
 /**
  * Class for management all related to the language processing in the NLP.

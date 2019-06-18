@@ -2,7 +2,7 @@ package si.slotex.nlp.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import si.medius.nlp.model.Entity;
+import si.slotex.nlp.entity.Entity;
 
 /**
  * Repository that saves all found entities in the processed document to the

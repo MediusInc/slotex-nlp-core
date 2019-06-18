@@ -17,8 +17,8 @@ import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.postag.WordTagSampleStream;
 import opennlp.tools.util.ObjectStream;
 import opennlp.tools.util.TrainingParameters;
-import si.medius.nlp.model.DocTag;
-import si.medius.nlp.model.Sentence;
+import si.slotex.nlp.entity.DocTag;
+import si.slotex.nlp.entity.Sentence;
 
 /**
  * Class for management all related to the part-of-speech tagging in the NLP.

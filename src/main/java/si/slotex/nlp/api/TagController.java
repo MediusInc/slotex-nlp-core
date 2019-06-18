@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import si.medius.nlp.model.DocTag;
-import si.medius.nlp.model.Document;
-import si.medius.nlp.model.Entity;
-import si.medius.nlp.model.TaggedData;
+import si.slotex.nlp.entity.DocTag;
+import si.slotex.nlp.entity.Document;
+import si.slotex.nlp.entity.Entity;
+import si.slotex.nlp.entity.TaggedData;
 import si.slotex.nlp.service.TagService;
 
 @RestController

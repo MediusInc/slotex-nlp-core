@@ -29,7 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import si.medius.nlp.model.Document;
+import si.slotex.nlp.entity.Document;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

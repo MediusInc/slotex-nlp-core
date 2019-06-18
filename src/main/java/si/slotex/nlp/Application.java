@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import si.slotex.nlp.config.FileStorageProperties;
-import si.medius.nlp.model.CorpusSentenceDiff;
+import si.slotex.nlp.entity.CorpusSentenceDiff;
 import si.slotex.nlp.service.TrainService;
 
 @SpringBootApplication

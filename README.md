@@ -134,6 +134,97 @@ show collections
 > db.docTag.remove( { _id: 3213 } )
 ```
 
+## Setting up Mongo and Redis for local development
+
+>####Prerequisites:
+>
+> + [VirtualBox](https://www.virtualbox.org/) with installed distribution of linux (you can find disk images for virtual machine [here](https://www.osboxes.org/))
+>
+> + Installed guest additions on specified virtual machine (You can find one way how to install them [here](https://docs.oracle.com/cd/E36500_01/E36502/html/qs-guest-additions.html)) (optional, but recommended)
+
+### Setup
+
+>####VirtualBox and Port forwarding    
+>
+> + In virtualBox under *File* &rarr; *Preferences* &rarr; *Network* create new **NAT network**
+>
+> + Setup port forwarding for your network. You can find guest IP on your virtual machine, while the port numbers have to be the same as those specified in **application.propertis** file of Slotex-nlp-core for host port and in **docker-compose.yml** file for guest port.
+>
+>    | Name  | Protocol | Host IP   | Host Port | Guest IP  | Guest Port |
+>    |-------|----------|-----------|-----------|-----------|------------|
+>    | Mongo | TCP      | 127.0.0.1 | 27017     | 10.0.2.15 | 27017      |
+>    | Redis | TCP      | 127.0.0.1 | 6379      | 10.0.2.15 | 6379       | 
+>  
+>    *example port forwarding table*
+> 
+> + Add created network to your virtual machine under *Settings* &rarr; *Network*
+>
+>####Docker setup
+>
+> + Install **docker** on your virtual machine (follow instructions [here](https://docs.docker.com/install/linux/docker-ce/ubuntu)) 
+> 
+> + install **docker-compose**:
+
+```
+> sudo apt install docker-compose
+```
+
+> + Add *docker-compose.yml* file to your specified folder where you will run it on virtual machine:
+>
+>    + use drag-and-drop (guest additions installed)
+>
+>    + download it directly from within your virtual machine (internet connection required)
+>
+> + Start and stop your docker containers for Mongo and Redis by running below commands:
+
+```
+> sudo docker-compose up
+```
+
+```
+> sudo docker-compose down
+```
+
+>####Mongo setup
+>
+> + Access docker container console:
+
+``` 
+> docker exec -it mongodb /bin/bash
+```
+
+> + Access mongo:
+
+```
+> mongo -u root -p admin
+```
+
+> + Select **medius_nlp** database:
+
+```
+ > use medius_nlp
+```
+
+> + In order to connect to mongo database you need to manually add user to selected database:
+
+```
+ db.createUser(
+     {
+       user: "admin",
+       pwd: "toor123",
+       roles:
+         [
+           { role: "readWrite", db: "medius_nlp" }, 
+           "userAdmin"
+         ]
+     }
+ )
+```
+
+*! Note: If there are problems with connection or adding user, since database is empty, create simple collection, which you can later remove.*
+
+---
+
 ### Saving through microservice
 
 When We are saving document with the same ID that is already existing in the database. In that case the data is overwritten with new one.

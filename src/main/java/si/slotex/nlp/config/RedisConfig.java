@@ -14,7 +14,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import si.medius.nlp.model.Document;
+import si.slotex.nlp.entity.Document;
 
 /**
  * Configuration for jedis connection to Redis. We use redis for queues where we
