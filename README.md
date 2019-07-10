@@ -2,7 +2,6 @@
 
 Microservice for running NLP ML algorithms (Apache OpenNLP & Stanford).
 
-![alt text](docs/MediusNLP-microservice.jpg)
 
 ## Installation using Docker
 
