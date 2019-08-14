@@ -93,11 +93,11 @@ public class TagControllerTest
                                 fieldWithPath("languageProb")
                                         .description("The probability that the evaluated language is the correct one."),
                                 fieldWithPath("numOfSentences")
-                                        .description("Number of evaluated sentences by our MediusNLP sentence detection module."),
+                                        .description("Number of evaluated sentences by our SloTex NLP sentence detection module."),
                                 fieldWithPath("numOfTokens")
-                                        .description("Number of evaluated tokens by our MediusNLP Tokenizer module."),
+                                        .description("Number of evaluated tokens by our SloTex NLP Tokenizer module."),
                                 fieldWithPath("numOfEntities")
-                                        .description("Number of found entites by our MediusNLP NER module."),
+                                        .description("Number of found entites by our SloTex NLP NER module."),
                                 fieldWithPath("entities")
                                         .description("List of the found entities in the sent document."),
                                 fieldWithPath("entities[].id")
@@ -135,13 +135,13 @@ public class TagControllerTest
                                 fieldWithPath("languageProb")
                                         .description("The probability that the evaluated language is the correct one."),
                                 fieldWithPath("numOfSentences")
-                                        .description("Number of evaluated sentences by our MediusNLP in the processed document."),
+                                        .description("Number of evaluated sentences by our SloTex NLP in the processed document."),
                                 fieldWithPath("sentences")
                                         .description("List of all the evaluated sentences in the processed document."),
                                 fieldWithPath("sentences[].sentence")
                                         .description("Evaluated sentence from the document with its content."),
                                 fieldWithPath("sentences[].numberOfTokens")
-                                        .description("Number of how many tokens were evaluated in the sentence by our MediusNLP framework."),
+                                        .description("Number of how many tokens were evaluated in the sentence by our SloTex NLP framework."),
                                 fieldWithPath("sentences[].tokens")
                                         .description("List of all the evaluated tokens in the processed sentence."),
                                 fieldWithPath("sentences[].tokens[].word")
@@ -177,13 +177,13 @@ public class TagControllerTest
                                 fieldWithPath("[].languageProb")
                                         .description("The probability that the evaluated language is the correct one."),
                                 fieldWithPath("[].numOfSentences")
-                                        .description("Number of evaluated sentences by our MediusNLP in the processed document."),
+                                        .description("Number of evaluated sentences by our SloTex NLP in the processed document."),
                                 fieldWithPath("[].sentences")
                                         .description("List of all the evaluated sentences in the processed document."),
                                 fieldWithPath("[].sentences[].sentence")
                                         .description("Evaluated sentence from the document with its content."),
                                 fieldWithPath("[].sentences[].numberOfTokens")
-                                        .description("Number of how many tokens were evaluated in the sentence by our MediusNLP framework."),
+                                        .description("Number of how many tokens were evaluated in the sentence by our SloTex NLP framework."),
                                 fieldWithPath("[].sentences[].tokens")
                                         .description("List of all the evaluated tokens in the processed sentence."),
                                 fieldWithPath("[].sentences[].tokens[].word")

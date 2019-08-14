@@ -1,6 +1,4 @@
-= MediusNLP API Documentation
-:author: Mitja J. Kotnik
-:email: mitja.kotnik@medius.si
+= SloTex NLP Core API Documentation
 :revnumber: 1.0-SNAPSHOT
 :revdate: 29.10.2018
 :revremark: Initial version

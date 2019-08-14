@@ -29,8 +29,8 @@ import si.slotex.nlp.entity.QueueStatus;
 public class DocumentService
 {
 
-    private final String waitQueue = "MediusNLP:waitQueue";
-    private final String workQueue = "MediusNLP:workQueue";
+    private final String waitQueue = "SloTex NLP:waitQueue";
+    private final String workQueue = "SloTex NLP:workQueue";
     private final RedisTemplate<String, Document> redisTemplate;
     private Logger logger = LoggerFactory.getLogger(DocumentService.class);
     private ListOperations<String, Document> listOps;

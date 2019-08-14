@@ -19,3 +19,6 @@ target/
 
 # ignore logs
 /logs
+
+# docker
+docker/data

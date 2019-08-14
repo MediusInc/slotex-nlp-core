@@ -8,7 +8,7 @@ import si.slotex.nlp.entity.ModelTrainInfo;
 
 /**
  * Repository for saving data about new training data and new trained models
- * that were executed over our MediusNLP UI.
+ * that were executed over our SloTex NLP UI.
  *
  * @author Mitja Kotnik
  * @version 1.0
