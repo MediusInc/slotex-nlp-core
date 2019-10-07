@@ -1,4 +1,4 @@
-# SloTex NLP Core
+![SloTex NLP Logo](docs/images/slotex_logo_core.svg)
 
 Microservice for running NLP ML algorithms (Apache OpenNLP & Stanford).
 
@@ -73,7 +73,7 @@ In this picture the values (LPUSH, LPOP, LINSERT,...) are representing the
 **command**. The STARK value represents the **key**, and list of names
 represents **values**.
 
-![Redis simple usage](docs/redis-basic-commands-lists.png)
+![Redis simple usage](docs/images/redis-basic-commands-lists.png)
 
 ## MongoDB Usage
 
