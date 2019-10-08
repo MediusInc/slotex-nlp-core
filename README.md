@@ -1,6 +1,6 @@
-![SloTex NLP Logo](docs/images/slotex_logo_core.svg)
+![SloTex NLP Logo](https://slotex.si/images/slotex_logo_core.svg)
 
-Microservice for running NLP ML algorithms (Apache OpenNLP & Stanford).
+Microservice for running NLP ML algorithms with Apache OpenNLP.
 
 
 ## Docker
