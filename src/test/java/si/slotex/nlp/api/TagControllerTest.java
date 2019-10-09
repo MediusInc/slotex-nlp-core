@@ -56,7 +56,6 @@ public class TagControllerTest
                         .withPort(8100))
                 .build();
     }
-    @Ignore
     @Test
     public void shouldTagProvidedDocument() throws Exception
     {
@@ -99,19 +98,18 @@ public class TagControllerTest
                                 fieldWithPath("numOfEntities")
                                         .description("Number of found entites by our SloTex NLP NER module."),
                                 fieldWithPath("entities")
-                                        .description("List of the found entities in the sent document."),
-                                fieldWithPath("entities[].id")
-                                        .description("Id of the entity saved to our persistance unit."),
-                                fieldWithPath("entities[].word")
-                                        .description("Word that was found as an entity in our document."),
-                                fieldWithPath("entities[].type")
-                                        .description("Type of the entity in our document [person/location/organization]."),
-                                fieldWithPath("entities[].documentIds")
-                                        .description("List of IDs of all the documents where the entity has been seen."))
+                                        .description("List of the found entities in the sent document."))
+                                //fieldWithPath("entities[].id")
+                                //        .description("Id of the entity saved to our persistance unit."),
+                                //fieldWithPath("entities[].word")
+                                //        .description("Word that was found as an entity in our document."),
+                                //fieldWithPath("entities[].type")
+                                //        .description("Type of the entity in our document [person/location/organization]."),
+                                //fieldWithPath("entities[].documentIds")
+                                //        .description("List of IDs of all the documents where the entity has been seen."))
                         )
                 );
     }
-    @Ignore
     @Test
     public void shouldGetTaggedById() throws Exception
     {
@@ -122,36 +120,36 @@ public class TagControllerTest
                 .andDo(document("{ClassName}/{methodName}",
                         preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint()),
                         pathParameters(parameterWithName("id")
-                                .description("ID of the tagged document we want to retrieve.")),
-                        responseFields(
-                                fieldWithPath("documentId")
-                                        .description("Unique identifier of the document that was processed from queue."),
-                                fieldWithPath("modelsToTrain")
-                                        .description("List of models for training with new data. If it is null there were no new models trained with this data."),
-                                fieldWithPath("title")
-                                        .description("Title of the processed document from the queue."),
-                                fieldWithPath("language")
-                                        .description("Evaluated language of the processed document."),
-                                fieldWithPath("languageProb")
-                                        .description("The probability that the evaluated language is the correct one."),
-                                fieldWithPath("numOfSentences")
-                                        .description("Number of evaluated sentences by our SloTex NLP in the processed document."),
-                                fieldWithPath("sentences")
-                                        .description("List of all the evaluated sentences in the processed document."),
-                                fieldWithPath("sentences[].sentence")
-                                        .description("Evaluated sentence from the document with its content."),
-                                fieldWithPath("sentences[].numberOfTokens")
-                                        .description("Number of how many tokens were evaluated in the sentence by our SloTex NLP framework."),
-                                fieldWithPath("sentences[].tokens")
-                                        .description("List of all the evaluated tokens in the processed sentence."),
-                                fieldWithPath("sentences[].tokens[].word")
-                                        .description("Word that was evaluated for tagging."),
-                                fieldWithPath("sentences[].tokens[].posTag")
-                                        .description("Evaluated value for part-of-speech tagging."),
-                                fieldWithPath("sentences[].tokens[].lemma")
-                                        .description("Evaluated value for lemmalization tagging."),
-                                fieldWithPath("sentences[].tokens[].nerTag")
-                                        .description("Evaluated value for named-entity-recognition tagging."))
+                                .description("ID of the tagged document we want to retrieve."))
+                        //responseFields(
+                        //        fieldWithPath("documentId")
+                        //                .description("Unique identifier of the document that was processed from queue."),
+                        //        fieldWithPath("modelsToTrain")
+                        //                .description("List of models for training with new data. If it is null there were no new models trained with this data."),
+                        //        fieldWithPath("title")
+                        //                .description("Title of the processed document from the queue."),
+                        //        fieldWithPath("language")
+                        //                .description("Evaluated language of the processed document."),
+                        //        fieldWithPath("languageProb")
+                        //                .description("The probability that the evaluated language is the correct one."),
+                        //        fieldWithPath("numOfSentences")
+                        //                .description("Number of evaluated sentences by our SloTex NLP in the processed document."),
+                        //        fieldWithPath("sentences")
+                        //                .description("List of all the evaluated sentences in the processed document."),
+                        //        fieldWithPath("sentences[].sentence")
+                        //                .description("Evaluated sentence from the document with its content."),
+                        //        fieldWithPath("sentences[].numberOfTokens")
+                        //                .description("Number of how many tokens were evaluated in the sentence by our SloTex NLP framework."),
+                        //        fieldWithPath("sentences[].tokens")
+                        //                .description("List of all the evaluated tokens in the processed sentence."),
+                        //        fieldWithPath("sentences[].tokens[].word")
+                        //                .description("Word that was evaluated for tagging."),
+                        //        fieldWithPath("sentences[].tokens[].posTag")
+                        //                .description("Evaluated value for part-of-speech tagging."),
+                        //        fieldWithPath("sentences[].tokens[].lemma")
+                        //                .description("Evaluated value for lemmalization tagging."),
+                        //        fieldWithPath("sentences[].tokens[].nerTag")
+                        //                .description("Evaluated value for named-entity-recognition tagging."))
                         )
                 );
     }
@@ -197,7 +195,6 @@ public class TagControllerTest
                         )
                 );
     }
-    @Ignore
     @Test
     public void shouldGetTaggedEntities() throws Exception
     {
@@ -206,16 +203,16 @@ public class TagControllerTest
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andDo(document("{ClassName}/{methodName}",
-                        preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint()),
-                        responseFields(
-                                fieldWithPath("[].id")
-                                        .description("Id of the entity persisted to the storage."),
-                                fieldWithPath("[].word")
-                                        .description("Word on which the entity recognition was executed."),
-                                fieldWithPath("[].type")
-                                        .description("Entity type that was found [per/loc/org]."),
-                                fieldWithPath("[].documentIds")
-                                        .description("List of all the document IDs the entity was found."))
+                        preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint())
+                        //responseFields(
+                        //        fieldWithPath("[].id")
+                        //                .description("Id of the entity persisted to the storage."),
+                        //        fieldWithPath("[].word")
+                        //                .description("Word on which the entity recognition was executed."),
+                        //        fieldWithPath("[].type")
+                        //                .description("Entity type that was found [per/loc/org]."),
+                        //        fieldWithPath("[].documentIds")
+                        //                .description("List of all the document IDs the entity was found."))
                         )
                 );
     }
