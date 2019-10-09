@@ -1,20 +1,23 @@
-= SloTex NLP Core API Documentation
+= image:slotex_logo_core.svg[Logo,height=128,opts=inline] 
 :revnumber: 1.0-SNAPSHOT
 :revdate: 29.10.2018
 :revremark: Initial version
 :toc: left
 :sectnums:
 :source-highlighter: highlight.js
+:imagesdir: images
 
 == Introduction
-This is a Spring REST Docs documentation four our MediusNLP RESTfull API.
+This is a Spring REST Docs documentation for the SloTex NLP RESTfull API.
 
 == Admin API
-Collection of CRUD API endpoints used to manipulate and show administration data about out MediusNLP platform.
+Collection of CRUD API endpoints used to manipulate and show administration
+data about out MediusNLP platform.
 
 === GET status
-Obtains a status message from servcer which tells us basic information about the processes that are running on our platform. It provides
-data about how many documents are already processed, in processing and waiting to be processed.
+Obtains a status message from servcer which tells us basic information about
+the processes that are running on our platform. It provides data about how many
+documents are already processed, in processing and waiting to be processed.
 
 ==== Sample Request
 include::{snippets}/AdminControllerTest/shouldReturnStatusMessage/http-request.adoc[]
