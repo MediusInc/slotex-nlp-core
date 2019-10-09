@@ -4,6 +4,7 @@ Microservice for running NLP ML algorithms with Apache OpenNLP.
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MediusInc_slotex-nlp-core&metric=alert_status)](https://sonarcloud.io/dashboard?id=MediusInc_slotex-nlp-core)
 [![Build Status](https://travis-ci.org/MediusInc/slotex-nlp-core.svg?branch=master)](https://travis-ci.org/MediusInc/slotex-nlp-core)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Docker
 
