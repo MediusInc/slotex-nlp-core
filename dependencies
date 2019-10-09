@@ -15,4 +15,4 @@ export REDIS_TAG="5-alpine"
 # Releases: https://hub.docker.com/r/library/mongo/tags/
 export MONGO_TAG="4.2-bionic"
 
-export SLOTEX_NLP_TAG="1.0.0"
+export SLOTEX_NLP_CORE_TAG="1.0.0"
