@@ -10,7 +10,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./docker/data/redis:/data/:rw
+      - ./tmp/data/redis:/data/:rw
     networks:
       - slotex-nlp-network
   # mongodb
@@ -27,19 +27,18 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./docker/data/mongo:/data/db:rw
+      - ./tmp/data/mongo:/data/db:rw
       - ./docker/mongodb/scripts/:/docker-entrypoint-initdb.d/:rw
     networks:
       - slotex-nlp-network
   # NLP
   slotex-nlp-core:
-    image: mediussi/slotex-nlp-core:${SLOTEX_NLP_CORE_TAG}
+    image: pkpslotex/slotex-nlp-core:${SLOTEX_NLP_CORE_TAG}
     restart: always
     container_name: slotex-nlp-core
     ports:
       - "8100:8100"
     environment:
-      - SLOTEX_NLP_SERVICE="http://localhost:8100"
       - MONGODB_AUTHENTICATION=slotex_nlp
       - MONGODB_USERNAME=admin
       - MONGODB_PASSWORD=toor123
@@ -50,7 +49,7 @@ services:
       - REDIS_PORT=6379
     volumes:
       - ./docker/application.properties.tmpl:/conf/application.properties.tmpl:ro
-      - ./docker/data/slotex-nlp:/var/data:rw
+      - ./tmp/data/slotex-nlp-core:/var/data:rw
     networks:
       - slotex-nlp-network
     depends_on:
