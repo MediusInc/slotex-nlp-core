@@ -1,0 +1,45 @@
+sudo: required
+language: java
+dist: trusty
+jdk: oraclejdk8
+install: mvn dependency:resolve
+cache:
+  directories:
+    - $HOME/bin
+    - $HOME/.m2
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.24.1
+
+addons:
+  sonarcloud:
+    organization: "mediusinc"
+
+services:
+  - docker
+  - redis-server
+  - mongodb
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - if [ ! -f "$HOME/bin/docker-compose" ]; then curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose; fi
+  - chmod +x $HOME/bin/docker-compose
+  - sudo cp $HOME/bin/docker-compose /usr/local/bin/
+  - docker-compose version
+
+before_script:
+  - source dependencies
+  - docker-compose up -d mongodb redis
+
+script:
+  - mvn clean verify -P sonar -Dsonar.login=$SONAR_TOKEN
+  - mvn package
+  - docker-compose down
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_COMMIT; fi`
+  - export IMAGE_NAME=pkpslotex/slotex-nlp-core
+  - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
+  - docker tag $IMAGE_NAME:$TRAVIS_COMMIT $IMAGE_NAME:$TAG
+  - docker push $IMAGE_NAME
