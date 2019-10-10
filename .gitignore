@@ -14,7 +14,6 @@ target/
 .idea_modules/
 
 # CI/CD
-/Dockerfile
 /conf
 
 # ignore logs
