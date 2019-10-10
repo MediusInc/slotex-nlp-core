@@ -40,10 +40,13 @@ script:
   - mvn package
   - docker-compose down
 
-after_success:
+after_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_COMMIT; fi`
   - export IMAGE_NAME=pkpslotex/slotex-nlp-core
   - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
   - docker tag $IMAGE_NAME:$TRAVIS_COMMIT $IMAGE_NAME:$TAG
-  - docker push $IMAGE_NAME
+  - docker push $IMAGE_NAME:$TAG
+
+after_success:
+  - .travis/update-readme.sh
