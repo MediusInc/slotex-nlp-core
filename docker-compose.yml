@@ -39,7 +39,7 @@ services:
     ports:
       - "8100:8100"
     environment:
-      - MONGODB_AUTHENTICATION=slotex_nlp
+      - MONGODB_AUTHENTICATION_DATABASE=slotex_nlp
       - MONGODB_USERNAME=admin
       - MONGODB_PASSWORD=toor123
       - MONGODB_DATABASE=slotex_nlp
