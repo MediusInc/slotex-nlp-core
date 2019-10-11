@@ -23,9 +23,6 @@
         <version>2.1.2.RELEASE</version>
     </parent>
 
-
-    <!-- TODO @peter-cebasek add license here -->
-
     <developers>
         <developer>
             <name>Tadej Justin</name>
