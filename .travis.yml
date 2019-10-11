@@ -12,11 +12,6 @@ notifications:
   slack: pkp2019-slotex:$SLACK_TOKEN
   email: false
 
-
-branches:
-  except:
-     - /^v[0-9]/
-
 addons:
   sonarcloud:
     organization: "mediusinc"
