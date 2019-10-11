@@ -40,8 +40,8 @@ set_dependencies () {
                 REDIS_VERSION=$(echo "$image" | rev | cut -d ":" -f 1 | rev)
             elif echo "$image" | grep -q "mongo"; then
                 MONGO_VERSION=$(echo "$image" | rev | cut -d ":" -f 1 | rev)
-            elif echo "$image" | grep -q "medius-nlp"; then
-                SLOTEX_NLP_VERSION=$(echo "$image" | rev | cut -d ":" -f 1 | rev)
+            elif echo "$image" | grep -q "slotex-nlp-core"; then
+                SLOTEX_NLP_CORE_VERSION=$(echo "$image" | rev | cut -d ":" -f 1 | rev)
             fi
         done
     else
@@ -51,7 +51,7 @@ set_dependencies () {
 
     echo "export REDIS_TAG=${REDIS_VERSION}" > dependencies
     { echo "export MONGO_TAG=${MONGO_VERSION}" 
-      echo "export SLOTEX_NLP_TAG=${SLOTEX_NLP_VERSION}" 
+      echo "export SLOTEX_NLP_CORE_TAG=${SLOTEX_NLP_CORE_VERSION}"
     } >> dependencies
 }
 
@@ -64,7 +64,7 @@ source dependencies
 
 check_if_var_is_set REDIS_TAG
 check_if_var_is_set MONGO_TAG
-check_if_var_is_set SLOTEX_NLP_TAG
+check_if_var_is_set SLOTEX_NLP_CORE_TAG
 
 # parse args and switches
 options=$(getopt -o hrpdce: --long help,remove,pull,down,check,env: -n 'parse-options' -- "$@")
