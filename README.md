@@ -6,8 +6,9 @@ Microservice for running NLP ML algorithms with Apache OpenNLP.
 [![Build Status](https://travis-ci.org/MediusInc/slotex-nlp-core.svg?branch=master)](https://travis-ci.org/MediusInc/slotex-nlp-core)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Slack](https://img.shields.io/badge/slack-@pkp2019-yellow.svg?logo=slack)](https://join.slack.com/t/pkp2019-slotex/shared_invite/enQtNzkwNTk5MDMyOTc2LTNhOTQ0MTU3ZDMzMDM2NDRhYTRlNWRkOWRmZTk0N2YzNmExNDliYTU1NGI4NWFjNjFhNTFkNTcyNzhlZGIzZmU)
+[![DcokerHub pulls](https://img.shields.io/docker/pulls/pkpslotex/slotex-nlp-core.svg)](https://hub.docker.com/r/pkpslotex/slotex-nlp-core)
 
-## Docker
+## Quick run using docker
 
 Here we provide step by step simple guide, how you can run the project using
 Docker and docker-compose, for quick start on local computer. 
@@ -35,8 +36,9 @@ mvn install -dskipTests
 docker build -t slotex-nlp-core .
 ```
 
+## Developer tips and extra explanations
 
-## Redis Usage
+### Redis Usage
 
 Redis is used as a queue for documents that need to be processed. We get a list
 of documents for processing and get them out when the document was successfully
@@ -52,7 +54,7 @@ docker exec -it reids /bin/bash
 redis-cli -h 127.0.0.1 -p 6379
 ```
 
-### Redis queue settings (setup)
+#### Redis queue settings (setup)
 
 In our redis instance we'll be using two queues for processing incoming
 documents. First there will be a waiting queue where there will be all the
@@ -64,7 +66,7 @@ our processing (NLP) is not successful (in case the microservice fails, ... or
 else) the document saved in our processing queue is moved back to waiting
 queue. 
 
-### Redis basic usage
+#### Redis basic usage
 
 For usage of Redis we can use basic commands that help us getting values from
 our Redis queue.
@@ -79,7 +81,7 @@ represents **values**.
 
 ![Redis simple usage](docs/images/redis-basic-commands-lists.png)
 
-## MongoDB Usage
+### MongoDB Usage
 
 MongoDB document database is used for persistent storage of data that was
 processed with our microservice. We get documents from our Redis queue and
@@ -88,7 +90,7 @@ MongoDB server. When we're training new models we save additional training data
 to the database with the ID of the training data and model that was previously
 used.
 
-### MongoDB connection
+#### MongoDB connection
 
 Run the following command for connecting to MongoDB, if you used docker-compose:
 
@@ -144,7 +146,7 @@ To remove a specific data (document) from the collection:
 db.docTag.remove( { _id: 3213 } )
 ```
 
-## Setting up Mongo and Redis for local development
+### Setting up Mongo and Redis for local development
 
 #### Prerequisites:
 
@@ -157,9 +159,9 @@ db.docTag.remove( { _id: 3213 } )
    [here](https://docs.oracle.com/cd/E36500_01/E36502/html/qs-guest-additions.html))
    (optional, but recommended)
 
-### Setup
+#### Setup
 
-#### VirtualBox and Port forwarding    
+##### VirtualBox and Port forwarding    
 
  + In virtualBox under *File* &rarr; *Preferences* &rarr; *Network* create new **NAT network**
 
@@ -177,7 +179,7 @@ db.docTag.remove( { _id: 3213 } )
  
  + Add created network to your virtual machine under *Settings* &rarr; *Network*
 
-#### Docker setup
+##### Docker setup
 
  + Install **docker** on your virtual machine (follow instructions
    [here](https://docs.docker.com/install/linux/docker-ce/ubuntu)) 
@@ -241,7 +243,7 @@ use slotex_nlp
  )
 ```
 
-### Saving through microservice
+#### Saving through microservice
 
 When We are saving document with the same ID that is already existing in the
 database. In that case the data is overwritten with new one.
