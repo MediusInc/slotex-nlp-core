@@ -2,45 +2,34 @@ sudo: required
 language: java
 dist: trusty
 jdk: oraclejdk8
-install: mvn dependency:resolve
 cache:
   directories:
-    - $HOME/bin
-    - $HOME/.m2
-
+  - "$HOME/bin"
+  - "$HOME/.m2"
 notifications:
-  slack: pkp2019-slotex:$SLACK_TOKEN
+  slack:
+    secure: bKNA3c3AYoie9JN+0BbLLAo8BexQOS84ddP3GnvKqTRpl2XfnUaSLfdwnK9GVzgU3pxCvBVHxza8vzvt/qqQkrx74A9r7AmyNaM2zvNK+Z/HlqMQNptrW3qG8pMZ/kOhUZr4J5yPGXca7319e5aDFMzpm8T9GAUgatf4oyRNpdXCTSpW65YnlRzUWsL7HRDNXacWhOIGTRmLcPEsw9Z7ycHccIFTAg0FiYuWP+yM9mY2pl5t+x9nBWp4HY9gz8bsaqfkmr+4HLepcvQakpqwh3B1anh0oyZjDPyRPGKpBOyX41dRAsRhBkeL/+6UPn0PRq/KaBMT2HdiieS2+t3VayreMrH3l89ylQNNmKX/k3cD6Tq7TTxd6Wsz1ysNVZr9PgFYy5hAWEo5OdmIZHM/wNxgERoxiqvYw54OsIY3lacg6x9a8/aHfu8ZraWZrujyadm2AXM7ufVvrnZ+aSKSngBOEpMLPofr+xmfKsDHoB+rZFdaTexJ2nQcg8fya2e5u44fpI4YI6WK1dcIqPudzDeXWBAj1UpNS6ny9lLNmCcBBGYggWtiY7yzyILVdZO31f1I8y85PmnfcEnVzNznffa+7DXYyWPk5yFESCOYUdGyOP01K0xjEqIZuQLem/3NwlXwLkwuZ+kaa2AYXGyOPTkiKQT+63RImVr322n7e14=
   email: false
-
 addons:
   sonarcloud:
-    organization: "mediusinc"
-
+    organization: mediusinc
 env:
   global:
     - DOCKER_COMPOSE_VERSION=1.24.1
     - IMAGE_NAME=pkpslotex/slotex-nlp-core
-
 services:
   - docker
-  - redis-server
-  - mongodb
-
 before_install:
   - sudo rm /usr/local/bin/docker-compose
   - if [ ! -f "$HOME/bin/docker-compose" ]; then curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose; fi
   - chmod +x $HOME/bin/docker-compose
   - sudo cp $HOME/bin/docker-compose /usr/local/bin/
-  
 before_script:
-  # before installing dependencies
-  - ./run-in-docker.sh --ittest
-
+  - "./run-in-docker.sh --ittest"
 script:
   - mvn clean verify -P sonar -Dsonar.login=$SONAR_TOKEN
   - mvn package
-  - ./run-in-docker.sh --ittest --down
-
+  - "./run-in-docker.sh --ittest --down"
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_COMMIT; fi`
@@ -48,7 +37,6 @@ after_success:
   - docker tag $IMAGE_NAME:$TRAVIS_COMMIT $IMAGE_NAME:$TAG
   - docker push $IMAGE_NAME:$TAG
   - bash ./.travis/update-readme.sh
-
 deploy:
   provider: script
   script: evn IMAGE_NAME=pkpslotex/slotex-nlp-core ./.travis/release-docker-image.sh
