@@ -186,3 +186,46 @@ include::{snippets}/TrainControllerTest/shouldGetRetrained/http-response.adoc[]
 
 ==== CURL sample
 include::{snippets}/TrainControllerTest/shouldGetRetrained/curl-request.adoc[]
+
+== Project founders
+
+The program PKP or Po kreativni poti do praktičnega znanja or Taking a creative
+path to practical knowledge connects universities and commercial partners and
+thus allows students to gain experience in the field, additional knowledge and
+abilities which are increasingly more important when entering a job market and
+starting a career. Students research creative and innovative solutions to
+challenges posed by the economy and society.
+
+The program cofinances projects lasting from 3 to 5 months that include 4 to 8
+students and their mentors.  SloTex is one of 133 projects participating in the
+second opening of the project between the years of 2017 and 2020.
+
+Find out more about the grant
+link:http://www.sklad-kadri.si/si/razvoj-kadrov/po-kreativni-poti-do-znanja-pkp/[here].
+
+[frame=none]
+[grid=none]
+[cols="^.<,^.>,^.<"]
+|===
+a|image::logo-sklad.svg[link=http://www.sklad-kadri.si/en/,height=65,opts=inline] a|image::logo-mizs.svg[link=https://www.gov.si/en/state-authorities/ministries/ministry-of-education-science-and-sport/,height=45] a|image::logo-pkp.svg[link=http://ec.europa.eu/esf/home.jsp?langId=en,height=65,opts=inline]
+|===
+
+**This project was founded by Republic of Slovenia and European union from
+European social found.**
+
+== Project members 
+
+SloTex is a collaboration project between the corporate partner
+link:https://meidius.si/[Medius] and
+three faculties of University of Ljubljana:
+link:https://www.fe.uni-lj.si/en/[Faculty of Electrical Engineering],
+link:https://www.fri.uni-lj.si/en/[Faculty of Computer and Information Science]
+and link:https://ff.uni-lj.si[Faculty of Arts].
+
+[frame=none]
+[grid=none]
+[cols="^.>,^.<,^.<,^.>"]
+|===
+a|image::logo.svg[link=https://medius.si,height=35]  a|image::logo-fe.svg[link=https://fe.uni-lj.si,height=90,opts=inline] a|image::logo-fri.svg[link=https://fri.uni-lj.si,height=90,opts=inline] a|image:logo-ff.svg[link=https://ff.uni-lj.si/an/,height=90,opts=inline] 
+|
+
