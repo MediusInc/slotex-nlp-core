@@ -8,35 +8,37 @@ cache:
   - "$HOME/.m2"
 notifications:
   slack:
-    secure: bKNA3c3AYoie9JN+0BbLLAo8BexQOS84ddP3GnvKqTRpl2XfnUaSLfdwnK9GVzgU3pxCvBVHxza8vzvt/qqQkrx74A9r7AmyNaM2zvNK+Z/HlqMQNptrW3qG8pMZ/kOhUZr4J5yPGXca7319e5aDFMzpm8T9GAUgatf4oyRNpdXCTSpW65YnlRzUWsL7HRDNXacWhOIGTRmLcPEsw9Z7ycHccIFTAg0FiYuWP+yM9mY2pl5t+x9nBWp4HY9gz8bsaqfkmr+4HLepcvQakpqwh3B1anh0oyZjDPyRPGKpBOyX41dRAsRhBkeL/+6UPn0PRq/KaBMT2HdiieS2+t3VayreMrH3l89ylQNNmKX/k3cD6Tq7TTxd6Wsz1ysNVZr9PgFYy5hAWEo5OdmIZHM/wNxgERoxiqvYw54OsIY3lacg6x9a8/aHfu8ZraWZrujyadm2AXM7ufVvrnZ+aSKSngBOEpMLPofr+xmfKsDHoB+rZFdaTexJ2nQcg8fya2e5u44fpI4YI6WK1dcIqPudzDeXWBAj1UpNS6ny9lLNmCcBBGYggWtiY7yzyILVdZO31f1I8y85PmnfcEnVzNznffa+7DXYyWPk5yFESCOYUdGyOP01K0xjEqIZuQLem/3NwlXwLkwuZ+kaa2AYXGyOPTkiKQT+63RImVr322n7e14=
+    secure: gbo4lix0pbCJR2r1xRjv7kfbVxsfT5Gx1c0N5wxFNGvePLDc+DIt1PaYDQjKMFzF+xCWFlSsrLg+L3li2qirQO/lfGlx6NQ9HxYXPkaa/SylwQuySUtxd+l5pTzxpU3JYON95GL0VfbhCTmEJX/iojkCgeFDDs4pIb3OxLue3uMx7ku9fiL2CwvzHwurcPpy/wa548e2wr8R3hSnZKXAEeAAi6/V3cQ4nVbeTsJ+7CUoBc+aWSl7mSP+UTqYSuSofWIclqbvRTg+fTKj8l+dex3EXyinpHeUhUPqV1nIDT/lYHNlwhlsmwP1Fm945+rSMasWrNN8bF16GKuBrE1J0KdRkILXmDuUY1V0qRh81gsJPNaxcB/a9WVfpoBMv5oz0ful/3KggXXV7+2dotcHGcchzjKhT1nqN1y8SyobgMO/EKQkN+NHtMinLJ6Mn4kWH8SIgUudz2aKBdfF6087cpYdDPMdfYr9Iw1LFZKDoDMZlN9G16Rlpfb2U336DHIE3+O69K9QucyUM/LxIU505cPb5SDiBp5wqM02jU+sWwClyKiEvsMNansRt2NfsldnyOC4GMfKH87u6G0TBa0gTT1lW1P343YaBb3nPOzJoSSvSZk6onAVyCBsW21fSWRp5vCGfcLSeP4xFxS+kjFS67L4yFSoqqKBN1aH/p7wmYc=
   email: false
 addons:
   sonarcloud:
     organization: mediusinc
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.24.1
-    - IMAGE_NAME=pkpslotex/slotex-nlp-core
+  - DOCKER_COMPOSE_VERSION=1.24.1
+  - IMAGE_NAME=pkpslotex/slotex-nlp-core
 services:
-  - docker
+- docker
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - if [ ! -f "$HOME/bin/docker-compose" ]; then curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose; fi
-  - chmod +x $HOME/bin/docker-compose
-  - sudo cp $HOME/bin/docker-compose /usr/local/bin/
+- sudo rm /usr/local/bin/docker-compose
+- if [ ! -f "$HOME/bin/docker-compose" ]; then curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > $HOME/bin/docker-compose; fi
+- chmod +x $HOME/bin/docker-compose
+- sudo cp $HOME/bin/docker-compose /usr/local/bin/
 before_script:
-  - "./run-in-docker.sh --ittest"
+- "./run-in-docker.sh --ittest"
 script:
-  - mvn clean verify -P sonar -Dsonar.login=$SONAR_TOKEN
-  - mvn package
-  - "./run-in-docker.sh --ittest --down"
+- mvn clean verify -P sonar -Dsonar.login=$SONAR_TOKEN
+- mvn package
+- "./run-in-docker.sh --ittest --down"
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_COMMIT; fi`
-  - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
-  - docker tag $IMAGE_NAME:$TRAVIS_COMMIT $IMAGE_NAME:$TAG
-  - docker push $IMAGE_NAME:$TAG
-  - bash ./.travis/update-readme.sh
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_COMMIT;
+  fi`
+- docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
+- docker tag $IMAGE_NAME:$TRAVIS_COMMIT $IMAGE_NAME:$TAG
+- docker push $IMAGE_NAME:$TAG
+- bash ./.travis/update-readme.sh
 deploy:
   provider: script
   script: evn IMAGE_NAME=pkpslotex/slotex-nlp-core ./.travis/release-docker-image.sh
