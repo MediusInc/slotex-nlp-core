@@ -23,9 +23,9 @@ usage () {
     echo ""
     echo "Available options: "
     echo " --remove shout down running containers and remove all docker images from local docker registry"
-    echo " --down shoot down running contaieners"
+    echo " --down shoot down running containers"
     echo " --check print docker status"
-    echo " --env "
+    echo " --ittest (prepare environment for it testing) "
 
 }
 
@@ -67,7 +67,7 @@ check_if_var_is_set MONGO_TAG
 check_if_var_is_set SLOTEX_NLP_CORE_TAG
 
 # parse args and switches
-options=$(getopt -o hrpdce: --long help,remove,pull,down,check,env: -n 'parse-options' -- "$@")
+options=$(getopt -o hrpdct --long help,remove,pull,down,check,ittest -n 'parse-options' -- "$@")
 if [ "$?" != "0" ]; then  
     echo "ERROR options provided"
     usage;
@@ -88,20 +88,18 @@ while true; do
     -d | --down ) down=true; shift; shift ;;
     -c | --check ) check=true; shift; shift ;;
     -r | --remove ) rmi=true; shift; shift ;;
-    -e | --env ) env="$2"; shift; shift ;;
+    -t | --ittest ) env=true; shift; shift ;;
     -- ) shift; break;;
     *) usage; break;;
     esac
 done
 
-if [ "$env" = false ]; then
-    echo "Please set --env argument"
-    usage
-    exit 2
+if [ "$env" = "true" ]; then
+    echo "Running $0 with --ittest switch. This will only prepare environment for integration testing."
 fi
 
-if $pull; then
-    if [ "$env" != "it-test" ]; then
+if [ "$pull" = "true" ]; then
+    if [ "$env" = "false" ]; then
         docker-compose pull -q
     else
         docker-compose pull -q redis mongodb
@@ -109,17 +107,13 @@ if $pull; then
     run=false
 fi
 
-if $down; then
-    if [ "$env" != "it-test" ]; then
-        docker-compose down -v
-    else
-        docker-compose down -v redis mongodb
-    fi
+if [ "$down" = "true" ]; then
+    docker-compose down -v
     run=false
 fi
 
-if $rmi; then
-    if [ "$env" != "it-test" ]; then
+if [ "$rmi" = "true" ]; then
+    if [ "$env" = "false" ]; then
         docker-compose down -v --rmi all
     else
         docker-compose down -v --rmi redis mongodb
@@ -127,13 +121,13 @@ if $rmi; then
     run=false
 fi
 
-if $check; then
+if [ "$check" = "true" ]; then
     docker-compose -f docker-compose.yml config -q
     run=false
 fi
 
-if $run; then
-    if [ "$env" != "it-test" ]; then
+if [ "$run" = "true" ]; then
+    if [ "$env" = "false" ]; then
         docker-compose up -d
     else
         docker-compose up -d redis mongodb
