@@ -39,6 +39,6 @@ public class NextSequenceService {
                 new Update().inc("seq",1),
                 options().returnNew(true).upsert(true),
                 CustomSequences.class);
-        return new Long(counter.getSeq());
+        return counter.getSeq();
     }
 }
