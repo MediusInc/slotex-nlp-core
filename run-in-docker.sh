@@ -25,6 +25,7 @@ usage () {
     echo " --remove shout down running containers and remove all docker images from local docker registry"
     echo " --down shoot down running containers"
     echo " --check print docker status"
+    echo " --validate validate docker-compose.yml"
     echo " --ittest (prepare environment for it testing) "
 
 }
@@ -67,7 +68,7 @@ check_if_var_is_set MONGO_TAG
 check_if_var_is_set SLOTEX_NLP_CORE_TAG
 
 # parse args and switches
-options=$(getopt -o hrpdct --long help,remove,pull,down,check,ittest -n 'parse-options' -- "$@")
+options=$(getopt -o hrpdctv --long help,remove,pull,down,check,ittest,validate -n 'parse-options' -- "$@")
 if [ "$?" != "0" ]; then  
     echo "ERROR options provided"
     usage;
@@ -79,6 +80,7 @@ run=true
 pull=false
 down=false
 check=false
+validate=false
 rmi=false
 env=false
 while true; do
@@ -87,6 +89,7 @@ while true; do
     -p | --pull ) pull=true; shift; shift ;;
     -d | --down ) down=true; shift; shift ;;
     -c | --check ) check=true; shift; shift ;;
+    -v | --validate ) validate=true; shift; shift ;;
     -r | --remove ) rmi=true; shift; shift ;;
     -t | --ittest ) env=true; shift; shift ;;
     -- ) shift; break;;
@@ -121,10 +124,16 @@ if [ "$rmi" = "true" ]; then
     run=false
 fi
 
-if [ "$check" = "true" ]; then
+if [ "$validate" = "true" ]; then
     docker-compose -f docker-compose.yml config -q
     run=false
 fi
+
+if [ "$check" = "true" ]; then
+    docker-compose ps
+    run=false
+fi
+
 
 if [ "$run" = "true" ]; then
     if [ "$env" = "false" ]; then
