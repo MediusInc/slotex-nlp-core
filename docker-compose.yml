@@ -48,7 +48,7 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
     volumes:
-      - ./docker/application.properties.tmpl:/conf/application.properties.tmpl:ro
+      - ./docker/docker-application.properties.tmpl:/conf/docker-application.properties.tmpl:ro
       - ./tmp/data/slotex-nlp-core:/var/data:rw
     networks:
       - slotex-nlp-network
