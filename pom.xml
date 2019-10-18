@@ -5,7 +5,7 @@
   <artifactId>slotex-nlp-core</artifactId>
   <url>https://github.com/MediusInc/slotex-nlp-core</url>
   <name>SloTex NLP Core</name>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.1.1-SNAPSHOT</version>
   <description>A web application which exposes REST endpoints for natural language processing.</description>
   <licenses>
     <license>
@@ -108,7 +108,21 @@
   <build>
     <pluginManagement>
       <plugins>
+         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+<plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
@@ -182,25 +196,6 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>build-info</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>8</source>
-          <target>8</target>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.asciidoctor</groupId>
         <artifactId>asciidoctor-maven-plugin</artifactId>
         <version>${version.asciidoctor}</version>
@@ -244,7 +239,15 @@
             </manifestEntries>
           </archive>
         </configuration>
-      </plugin>
+        <!-- Unfortunately, the skip flag is not supported.  Workaround: Bind the default-jar execution to a nonexistent phase. -->
+        <executions>
+          <execution>
+            <id>default-jar</id>
+            <phase>none</phase>
+          </execution>
+        </executions>
+    </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -268,6 +271,79 @@
                 </resource>
               </resources>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <version>2.2.4</version>
+        <executions>
+          <execution>
+            <id>get-the-git-infos</id>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+          <prefix>git</prefix>
+          <verbose>false</verbose>
+          <generateGitPropertiesFile>true</generateGitPropertiesFile>
+          <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+          <format>json</format>
+          <gitDescribe>
+            <skip>false</skip>
+            <always>false</always>
+            <dirty>-dirty</dirty>
+          </gitDescribe>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>1.6.1</version>
+        <configuration>
+          <from>
+            <image>pkpslotex/slotex-nlp-baseimage-docker:latest</image>
+          </from>
+          <to>
+            <image>pkpslotex/slotex-nlp-core</image>
+            <tags>
+              <tag>${git.commit.id}</tag>
+            </tags>
+          </to>
+          <container>
+            <ports>
+              <port>8100</port>
+            </ports>
+            <entrypoint>/docker-entrypoint.sh</entrypoint>
+          </container>
+          <extraDirectories>
+            <paths>
+              <path>src/main/docker</path>
+              <path>data/OpenNLP</path>
+            </paths>
+  <permissions>
+              <permission>
+                <file>/docker-entrypoint.sh</file>
+                <mode>755</mode>
+            </permission>
+            <permission>
+                <file>/init-models.sh</file>
+                <mode>755</mode>
+              </permission>
+            </permissions>
+          </extraDirectories>
+        </configuration>
+        <executions>
+          <execution>
+            <id>build-and-push-docker-image</id>
+            <phase>package</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
