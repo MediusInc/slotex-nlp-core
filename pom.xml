@@ -5,7 +5,7 @@
   <artifactId>slotex-nlp-core</artifactId>
   <url>https://github.com/MediusInc/slotex-nlp-core</url>
   <name>SloTex NLP Core</name>
-  <version>1.1.1</version>
+  <version>1.1.2-SNAPSHOT</version>
   <description>A web application which exposes REST endpoints for natural language processing.</description>
   <licenses>
     <license>
