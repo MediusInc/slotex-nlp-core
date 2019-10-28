@@ -248,7 +248,7 @@ use slotex_nlp
 When We are saving document with the same ID that is already existing in the
 database. In that case the data is overwritten with new one.
 
-## Project Founding
+## Project Funding
 
 |  <img alt="Public Scholarship, Development, Disability and Maintenence Fund of the Republic of Slovenia" src="https://slotex.si/images/logo-sklad.svg" height="65" /> |  <img alt="Ministry of Education, Science and Sport" src="https://slotex.si/images/logo-mizs.svg" height="65"/> |  <img alt="European Social Fund" src="https://slotex.si/images/logo-pkp.svg" height="65"/> |
 | --- | --- | --- |
