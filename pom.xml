@@ -40,7 +40,7 @@
     <version.stanford-corenlp>3.9.1</version.stanford-corenlp>
     <version.jedis-client>2.9.0</version.jedis-client>
     <version.asciidoctor>1.5.8</version.asciidoctor>
-    <version.apache-commons>2.6</version.apache-commons>
+    <version.apache-commons>2.7</version.apache-commons>
   </properties>
   <dependencies>
     <!-- dependencies for SloTex libraries -->
