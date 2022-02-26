@@ -37,7 +37,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <version.apache-opennlp>1.9.0</version.apache-opennlp>
     <version.slotex-nlp.entity>1.0.0</version.slotex-nlp.entity>
-    <version.stanford-corenlp>3.9.1</version.stanford-corenlp>
+    <version.stanford-corenlp>4.4.0</version.stanford-corenlp>
     <version.jedis-client>2.9.0</version.jedis-client>
     <version.asciidoctor>1.5.8</version.asciidoctor>
     <version.apache-commons>2.7</version.apache-commons>
